@@ -34,6 +34,7 @@ namespace DB_Assignment1
 
             synth.Volume = 100;  // 0...100
             synth.Rate = 1;    // -10...10
+            synth.Speak("Hello Mattias Asplund");
         }
 
         #endregion
@@ -101,19 +102,32 @@ namespace DB_Assignment1
             dgContacts.DataSource = null;
             dgContacts.DataSource = contactsData;
             dgContacts.Columns["ContactsId"].Visible = false;
+            dgContacts.RowHeadersVisible = false;
         }
 
         public void ClearTextBoxes()
         {
-            txtAdress.Text = "";
-            txtCity.Text = "";
-            txtEmail.Text = "";
             txtName.Text = "";
-            txtPhonenumber.Text = "";
+            txtAdress.Text = "";
             txtZipcode.Text = "";
+            txtCity.Text = "";
+            txtPhonenumber.Text = "";
+            txtEmail.Text = "";
             cboDay.Text = "Day";
             cboMonth.Text = "Month";
             cboYear.Text = "Year";
+            resetToBlack();
+        }
+
+        public void resetToBlack()
+        {
+            lblName.ForeColor = Color.Black;
+            lblAdress.ForeColor = Color.Black;
+            lblZipcode.ForeColor = Color.Black;
+            lblCity.ForeColor = Color.Black;
+            lblPhonenumber.ForeColor = Color.Black;
+            lblEmail.ForeColor = Color.Black;
+            lblBirthday.ForeColor = Color.Black;
         }
 
         public void RemoveContact()
@@ -149,8 +163,25 @@ namespace DB_Assignment1
         {
             try
             {
-                if (txtAdress.Text == "" || txtCity.Text == "" || txtEmail.Text == "" || txtName.Text == "" || txtPhonenumber.Text == "" || txtZipcode.Text == "" || cboYear.Text == "Year" || cboMonth.Text == "Month" || cboDay.Text == "Day")
+                if (txtAdress.Text.Trim() == "" 
+                    || txtCity.Text.Trim() == "" 
+                    || txtEmail.Text.Trim() == "" 
+                    || txtName.Text.Trim() == "" 
+                    || txtPhonenumber.Text.Trim() == "" 
+                    || txtZipcode.Text.Trim() == "" 
+                    || cboYear.Text == "Year"
+                    || cboMonth.Text == "Month" 
+                    || cboDay.Text == "Day")
                 {
+                    resetToBlack();
+                    if(txtName.Text.Trim() == "") { lblName.ForeColor = Color.Red; }
+                    if (txtAdress.Text.Trim() == "") { lblAdress.ForeColor = Color.Red; }
+                    if (txtCity.Text.Trim() == "") { lblCity.ForeColor = Color.Red; }
+                    if (txtEmail.Text.Trim() == "") { lblEmail.ForeColor = Color.Red; }
+                    if (txtPhonenumber.Text.Trim() == "") { lblPhonenumber.ForeColor = Color.Red; }
+                    if (txtZipcode.Text.Trim() == "") { lblZipcode.ForeColor = Color.Red; }
+                    if (cboYear.Text.Trim() == "" || cboMonth.Text == "Month" || cboDay.Text == "Day") { lblBirthday.ForeColor = Color.Red; }
+                    synth.Speak("Please fill the fields Mattias...");
                     MessageBox.Show("Please fill in all fields,\nin order to add a new contact.");
                 }
                 else
