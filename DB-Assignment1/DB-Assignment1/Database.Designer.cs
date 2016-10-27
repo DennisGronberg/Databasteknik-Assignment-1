@@ -48,9 +48,13 @@
             this.cmdRemoveContact = new System.Windows.Forms.Button();
             this.dgContacts = new System.Windows.Forms.DataGridView();
             this.splitterVertical = new System.Windows.Forms.GroupBox();
-            this.cmdSave = new System.Windows.Forms.Button();
+            this.cmdUpdate = new System.Windows.Forms.Button();
             this.cmdClear = new System.Windows.Forms.Button();
             this.splitterHorizontal = new System.Windows.Forms.GroupBox();
+            this.cmdCancel = new System.Windows.Forms.Button();
+            this.cmdSaveChanges = new System.Windows.Forms.Button();
+            this.txtSearchBar = new System.Windows.Forms.TextBox();
+            this.lblSearch = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgContacts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -211,10 +215,11 @@
             // 
             this.dgContacts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgContacts.Location = new System.Drawing.Point(12, 12);
+            this.dgContacts.Location = new System.Drawing.Point(12, 38);
             this.dgContacts.Name = "dgContacts";
+            this.dgContacts.ReadOnly = true;
             this.dgContacts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgContacts.Size = new System.Drawing.Size(807, 584);
+            this.dgContacts.Size = new System.Drawing.Size(807, 558);
             this.dgContacts.TabIndex = 0;
             // 
             // splitterVertical
@@ -225,15 +230,15 @@
             this.splitterVertical.TabIndex = 19;
             this.splitterVertical.TabStop = false;
             // 
-            // cmdSave
+            // cmdUpdate
             // 
-            this.cmdSave.Location = new System.Drawing.Point(947, 261);
-            this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(78, 31);
-            this.cmdSave.TabIndex = 12;
-            this.cmdSave.Text = "Save";
-            this.cmdSave.UseVisualStyleBackColor = true;
-            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
+            this.cmdUpdate.Location = new System.Drawing.Point(863, 205);
+            this.cmdUpdate.Name = "cmdUpdate";
+            this.cmdUpdate.Size = new System.Drawing.Size(78, 31);
+            this.cmdUpdate.TabIndex = 12;
+            this.cmdUpdate.Text = "Update";
+            this.cmdUpdate.UseVisualStyleBackColor = true;
+            this.cmdUpdate.Click += new System.EventHandler(this.cmdUpdate_Click);
             // 
             // cmdClear
             // 
@@ -253,14 +258,57 @@
             this.splitterHorizontal.TabIndex = 20;
             this.splitterHorizontal.TabStop = false;
             // 
+            // cmdCancel
+            // 
+            this.cmdCancel.Location = new System.Drawing.Point(1031, 205);
+            this.cmdCancel.Name = "cmdCancel";
+            this.cmdCancel.Size = new System.Drawing.Size(78, 31);
+            this.cmdCancel.TabIndex = 21;
+            this.cmdCancel.Text = "Cancel";
+            this.cmdCancel.UseVisualStyleBackColor = true;
+            this.cmdCancel.Visible = false;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
+            // 
+            // cmdSaveChanges
+            // 
+            this.cmdSaveChanges.Location = new System.Drawing.Point(947, 205);
+            this.cmdSaveChanges.Name = "cmdSaveChanges";
+            this.cmdSaveChanges.Size = new System.Drawing.Size(78, 31);
+            this.cmdSaveChanges.TabIndex = 22;
+            this.cmdSaveChanges.Text = "Save";
+            this.cmdSaveChanges.UseVisualStyleBackColor = true;
+            this.cmdSaveChanges.Visible = false;
+            this.cmdSaveChanges.Click += new System.EventHandler(this.cmdSaveChanges_Click);
+            // 
+            // txtSearchBar
+            // 
+            this.txtSearchBar.Location = new System.Drawing.Point(62, 12);
+            this.txtSearchBar.Name = "txtSearchBar";
+            this.txtSearchBar.Size = new System.Drawing.Size(757, 20);
+            this.txtSearchBar.TabIndex = 23;
+            this.txtSearchBar.TextChanged += new System.EventHandler(this.txtSearchBar_TextChanged);
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Location = new System.Drawing.Point(12, 15);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(44, 13);
+            this.lblSearch.TabIndex = 24;
+            this.lblSearch.Text = "Search:";
+            // 
             // Database
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1121, 608);
+            this.Controls.Add(this.lblSearch);
+            this.Controls.Add(this.txtSearchBar);
+            this.Controls.Add(this.cmdSaveChanges);
+            this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.splitterHorizontal);
             this.Controls.Add(this.cmdClear);
-            this.Controls.Add(this.cmdSave);
+            this.Controls.Add(this.cmdUpdate);
             this.Controls.Add(this.splitterVertical);
             this.Controls.Add(this.dgContacts);
             this.Controls.Add(this.cmdRemoveContact);
@@ -311,8 +359,12 @@
         private System.Windows.Forms.DataGridView dgContacts;
         private System.Windows.Forms.GroupBox splitterVertical;
         private System.Windows.Forms.GroupBox splitterHorizontal;
-        private System.Windows.Forms.Button cmdSave;
+        private System.Windows.Forms.Button cmdUpdate;
         private System.Windows.Forms.Button cmdClear;
+        private System.Windows.Forms.Button cmdCancel;
+        private System.Windows.Forms.Button cmdSaveChanges;
+        private System.Windows.Forms.TextBox txtSearchBar;
+        private System.Windows.Forms.Label lblSearch;
     }
 }
 
