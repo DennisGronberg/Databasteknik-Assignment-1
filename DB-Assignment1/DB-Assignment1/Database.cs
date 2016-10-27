@@ -269,7 +269,7 @@ namespace DB_Assignment1
 
         #endregion
 
-        //alldelles för laggit
+        //alldelles för laggit men kul
         //-------------------------
         //private void txtSearchBar_KeyPress(object sender, KeyPressEventArgs e)
         //{
