@@ -25,7 +25,8 @@ namespace DB_Assignment1
 
             var days = Enumerable.Range(1, 31).Select(n => n.ToString()).ToList();
             days.Insert(0, "Day");
-            var months = new List<string> { "Month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+            var months = new List<string> { "Month", "January", "February", "March", "April", "May", "June",
+                                            "July", "August", "September", "October", "November", "December" };
             var years = Enumerable.Range((DateTime.Now.Year - 100), 101).OrderByDescending(x => x).Select(x => x.ToString()).ToList();
             years.Insert(0, "Year");
             cboYear.DataSource = years;
@@ -85,6 +86,11 @@ namespace DB_Assignment1
         private void txtSearchBar_TextChanged(object sender, EventArgs e)
         {
             Search();
+        }
+
+        private void cmdSaveChanges_Click(object sender, EventArgs e)
+        {
+            SaveChanges();
         }
 
         #endregion
@@ -163,25 +169,18 @@ namespace DB_Assignment1
         {
             try
             {
-                if (txtAdress.Text.Trim() == "" 
-                    || txtCity.Text.Trim() == "" 
-                    || txtEmail.Text.Trim() == "" 
-                    || txtName.Text.Trim() == "" 
-                    || txtPhonenumber.Text.Trim() == "" 
-                    || txtZipcode.Text.Trim() == "" 
-                    || cboYear.Text == "Year"
-                    || cboMonth.Text == "Month" 
-                    || cboDay.Text == "Day")
+                if (txtAdress.Text.Trim() == "" || txtCity.Text.Trim() == "" || txtEmail.Text.Trim() == ""
+                    || txtName.Text.Trim() == "" || txtPhonenumber.Text.Trim() == "" || txtZipcode.Text.Trim() == ""
+                    || cboYear.Text == "Year" || cboMonth.Text == "Month" || cboDay.Text == "Day")
                 {
                     resetToBlack();
-                    if(txtName.Text.Trim() == "") { lblName.ForeColor = Color.Red; }
+                    if (txtName.Text.Trim() == "") { lblName.ForeColor = Color.Red; }
                     if (txtAdress.Text.Trim() == "") { lblAdress.ForeColor = Color.Red; }
                     if (txtCity.Text.Trim() == "") { lblCity.ForeColor = Color.Red; }
                     if (txtEmail.Text.Trim() == "") { lblEmail.ForeColor = Color.Red; }
                     if (txtPhonenumber.Text.Trim() == "") { lblPhonenumber.ForeColor = Color.Red; }
                     if (txtZipcode.Text.Trim() == "") { lblZipcode.ForeColor = Color.Red; }
                     if (cboYear.Text.Trim() == "" || cboMonth.Text == "Month" || cboDay.Text == "Day") { lblBirthday.ForeColor = Color.Red; }
-                    synth.Speak("Please fill the fields Mattias...");
                     MessageBox.Show("Please fill in all fields,\nin order to add a new contact.");
                 }
                 else
@@ -222,8 +221,18 @@ namespace DB_Assignment1
         {
             try
             {
-                if (txtAdress.Text == "" || txtCity.Text == "" || txtEmail.Text == "" || txtName.Text == "" || txtPhonenumber.Text == "" || txtZipcode.Text == "" || cboYear.Text == "Year" || cboMonth.Text == "Month" || cboDay.Text == "Day")
+                if (txtAdress.Text.Trim() == "" || txtCity.Text.Trim() == "" || txtEmail.Text.Trim() == ""
+                    || txtName.Text.Trim() == "" || txtPhonenumber.Text.Trim() == "" || txtZipcode.Text.Trim() == ""
+                    || cboYear.Text == "Year" || cboMonth.Text == "Month" || cboDay.Text == "Day")
                 {
+                    resetToBlack();
+                    if (txtName.Text.Trim() == "") { lblName.ForeColor = Color.Red; }
+                    if (txtAdress.Text.Trim() == "") { lblAdress.ForeColor = Color.Red; }
+                    if (txtCity.Text.Trim() == "") { lblCity.ForeColor = Color.Red; }
+                    if (txtEmail.Text.Trim() == "") { lblEmail.ForeColor = Color.Red; }
+                    if (txtPhonenumber.Text.Trim() == "") { lblPhonenumber.ForeColor = Color.Red; }
+                    if (txtZipcode.Text.Trim() == "") { lblZipcode.ForeColor = Color.Red; }
+                    if (cboYear.Text.Trim() == "" || cboMonth.Text == "Month" || cboDay.Text == "Day") { lblBirthday.ForeColor = Color.Red; }
                     MessageBox.Show("Please fill in all fields,\nin order to edit contact.");
                 }
                 else
@@ -272,11 +281,6 @@ namespace DB_Assignment1
             ClearTextBoxes();
         }
 
-        private void cmdSaveChanges_Click(object sender, EventArgs e)
-        {
-            SaveChanges();
-        }
-
         public void Search()
         {
             string searchText = txtSearchBar.Text.Trim().ToLower();
@@ -299,12 +303,5 @@ namespace DB_Assignment1
         }
 
         #endregion
-
-        //alldelles för laggit men kul
-        //-------------------------
-        //private void txtSearchBar_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    synth.Speak(e.KeyChar.ToString());
-        //}
     }
 }
