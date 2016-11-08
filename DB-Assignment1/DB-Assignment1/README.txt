@@ -1,1 +1,0 @@
-﻿Utvecklare: Dennis Grönberg
